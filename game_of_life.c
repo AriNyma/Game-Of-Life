@@ -24,7 +24,7 @@
         game_of_life
 
  2.  DESCRIPTION
-        
+        Game of ife is a simplified 
 
  3.  VERSIONS
        Original:
@@ -39,12 +39,16 @@
 *--------------------------------------------------------------------*/
 #include <stdio.h>
 
+
 /*-------------------------------------------------------------------*
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
 *--------------------------------------------------------------------*/
 /* Control flags */
 
 /* Global constants */
+#define SIZE_ROW 3
+#define SIZE_COL 3
+
 
 /* Global variables */
 
@@ -66,6 +70,12 @@ struct cell
 
 int main(void)
 {
+  
+  int alive_dead, column, row;
+
+  struct cell board[SIZE_ROW][SIZE_COL] = {0,0};
+ 
+  
 
 } /* end of main */
 
