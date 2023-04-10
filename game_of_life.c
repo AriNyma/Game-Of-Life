@@ -24,9 +24,9 @@
         game_of_life
 
  2.  DESCRIPTION
-        Program switches the "status" of a center node in a 3x3 grid according the situation next to it.
+        Program switches the "status" of a center node in a grid according the situation next to it.
         
-        If the node has 4 or more active nodes adjacenti to it then the center node will deactivate
+        If the node has 4 or more active nodes adjacent to it then the center node will deactivate
         Also if the "neigbourhood" has 1 or less active nodes the node will deactivate
         In the case there are 3 active nodes the node will activate
         and in the case there are 2 active nodes the node will not change
@@ -196,7 +196,7 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
     {
       if(table[i][j].current == 1)
       {
-        if(neighbours == 3 || neighbours )
+        if(neighbours == 3 || neighbours )                                                  // kesken
       }
     }
   }
