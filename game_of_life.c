@@ -25,7 +25,7 @@
 
  2.  DESCRIPTION
         Program switches the "status" of a center node in a grid according the situation next to it.
-        
+
         If the node has 4 or more active nodes adjacent to it then the center node will deactivate
         Also if the "neigbourhood" has 1 or less active nodes the node will deactivate
         In the case there are 3 active nodes the node will activate
@@ -67,10 +67,10 @@ struct cell
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
-int count_neighbours(struct cell table[][], int row, int column);
-void draw_table(struct cell table[][]);
-void show_current_generation(struct cell table[][]);
-void future_generation(struct cell table[][]);
+int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y);
+void draw_table(struct cell table[SIZE_COL][SIZE_ROW]);
+void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW]);
+void future_generation(struct cell table[SIZE_COL][SIZE_ROW]);
 
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
@@ -78,12 +78,18 @@ void future_generation(struct cell table[][]);
 
 int main(void)
 {
+  
   struct cell table [SIZE_COL][SIZE_ROW];
-  draw_table(table);
-  
-  
-  
 
+  draw_table(table);
+
+  int i;
+  for (i = 0; i < 10; i++)
+  {
+    show_current_generation(table);
+    future_generation(table);
+  }
+  return 0;
 } /* end of main */
 
 /*********************************************************************
@@ -95,26 +101,24 @@ int main(void)
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME: draw_table
- DESCRIPTION: setting up the array tables for current random/set for future null 
-	Input: 
+ DESCRIPTION: setting up the array tables for current random/set for future null
+	Input:
 	Output:
   Used global variables:
  REMARKS when using this function:
 *********************************************************************/
 void draw_table(struct cell table[SIZE_COL][SIZE_ROW])
 {
-  int i, j;
   srand(time(NULL));
+  int i, j;
   
   for(i = 0; i < SIZE_COL; i++)
   {
-    for(j = 0; j < SIZE_ROW; i++)
+    for(j = 0; j < SIZE_ROW; j++)
     {
       table[i][j].current = rand() % 2;
-      table[i][j].future = 0;
     }
   }
-
 }
 
 /*********************************************************************
@@ -122,18 +126,18 @@ void draw_table(struct cell table[SIZE_COL][SIZE_ROW])
 ---------------------------------------------------------------------
  NAME: count_neighbours
  DESCRIPTION: counting the neighbours of a node
-	Input: 
+	Input:
 	Output:
   Used global variables:
  REMARKS when using this function:
 *********************************************************************/
-int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW])
+int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y) // määrittele alue tarkemmin ja poista keskimmäinen solu laskennasta
 {
   int count = 0, i, j;
-  
-  for (i = -1; i <= 1; i++)
+
+  for(i = -1; i < 2; i++)
   {
-    for (j = -1; i <= 1; i++)
+    for(j = -1; j < 2; j++)
     {
       if(table[i][j].current == 1)
       {
@@ -141,6 +145,7 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW])
       }
     }
   }
+  count -= table[x][y].current;
   return count;
 }
 
@@ -149,7 +154,7 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW])
 ---------------------------------------------------------------------
  NAME: current_generation
  DESCRIPTION: print out the current table with the active and deactive nodes
-	Input: 
+	Input:
 	Output:
   Used global variables:
  REMARKS when using this function:
@@ -159,21 +164,13 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
   int i, j;
   for(i = 0; i < SIZE_COL; i++)
   {
-    for(j = 0; j < SIZE_ROW; i++)
+    for(j = 0; j < SIZE_ROW; j++)
     {
-      if(table[i][j].current == 1)
-      {
-        printf("#");
-      }
-      else
-      {
-        printf("-");
-      }
-
+      printf("%c ", table[i][j].current ? '*' : '.');
     }
     printf("/n");
   }
-  printf("/n");
+  printf("/n/n");
 }
 
 /*********************************************************************
@@ -181,7 +178,7 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
 ---------------------------------------------------------------------
  NAME: next_generation
  DESCRIPTION: creating the next generation according the current generation
-	Input: 
+	Input:
 	Output:
   Used global variables:
  REMARKS when using this function:
@@ -189,14 +186,33 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
 void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
 {
   int i, j;
-  int neighbours = count_neighbours(table);
+  
   for(i = 0; i < SIZE_COL; i++)
   {
-    for(j = 0; j < SIZE_ROW; i++)
+    for(j = 0; j < SIZE_ROW; j++)
     {
-      if(table[i][j].current == 1)
+      int neighbours = count_neighbours(table, i, j);
+      if(table[i][j].current == 0)
       {
-        if(neighbours == 3 || neighbours )                                                  // kesken
+        if(neighbours == 3)
+        {
+          table[i][j].future = 1;
+        }
+        else
+        {
+          table[i][j].future = 0;
+        }
+      }
+      else if(table[i][j].current == 1)
+      {
+        if(neighbours < 2 || neighbours > 3)
+        {
+          table[i][j].future = 0;
+        }
+        else
+        {
+          table[i][j].future = 1;
+        }
       }
     }
   }
