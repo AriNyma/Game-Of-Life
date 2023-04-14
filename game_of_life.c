@@ -135,6 +135,8 @@ void draw_table(struct cell table[SIZE_COL][SIZE_ROW])
 *********************************************************************/
 int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y) // määrittele alue tarkemmin ja poista keskimmäinen solu laskennasta
 {
+  /*reunojen rajaaminen pois: määritellään reuna-alueet eli esim i = 0 tai i = SIZE_COL-1, niin silloin table.future[i][j] = table.current[i][j]*/
+
   int count = 0, i, j;
 
   for(i = -1; i < 2; i++)
@@ -143,11 +145,13 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y) // mä
     {
       if(table[i][j].current == 1)
       {
+        /*taulukon pyörittäminen: kun i = 0 niin viereinen (vasemmalla oleva solu on i + leveys -1)
+        kun i = "max" oikealla oleva solu on i - leveys + 1. 2+10-1=11*/
         count ++;
       }
     }
   }
-  count -= table[x][y].current;
+  count -= table[y][x].current; //xy toisin päin koska rivit ja saraakkeet on ilmoitettu myös toisin päin
   return count;
 }
 
