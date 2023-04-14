@@ -84,6 +84,9 @@ int main()
   table[0][0].current = 1;
   table[1][0].current = 1;
   table[0][1].current = 1;
+  table[0][9].current = 1;
+  table[3][3].current = 1;
+  table[4][4].current = 1;
 
   show_current_generation(table);
   int i;
@@ -135,10 +138,8 @@ void draw_table(struct cell table[SIZE_COL][SIZE_ROW])
   Used global variables:
  REMARKS when using this function:
 *********************************************************************/
-int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y) // määrittele alue tarkemmin ja poista keskimmäinen solu laskennasta
+int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y)
 {
-  /*reunojen rajaaminen pois: määritellään reuna-alueet eli esim i = 0 tai i = SIZE_COL-1, niin silloin table.future[i][j] = table.current[i][j]*/
-
   int count = 0, i, j;
 
   for(i = -1; i < 2; i++)
@@ -154,7 +155,7 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y) // mä
       }
     }
   }
-  count -= table[y][x].current; //xy toisin päin koska rivit ja sarakkeet on ilmoitettu myös toisin päin
+  count -= table[x][y].current; 
   return count;
 }
 
