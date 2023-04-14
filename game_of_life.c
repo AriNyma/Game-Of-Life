@@ -52,8 +52,8 @@
 /* Control flags */
 
 /* Global constants */
-#define SIZE_ROW 9
-#define SIZE_COL 9
+#define SIZE_ROW 10
+#define SIZE_COL 10
 
 /* Global variables */
 
@@ -68,6 +68,7 @@ struct cell
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
 int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y);
+//void read_file(struct cell table[SIZE_COL][SIZE_ROW], char )
 void draw_table(struct cell table[SIZE_COL][SIZE_ROW]);
 void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW]);
 void future_generation(struct cell table[SIZE_COL][SIZE_ROW]);
@@ -76,18 +77,18 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW]);
 *    MAIN PROGRAM                                                      *
 **********************************************************************/
 
-int main(void)
+int main()
 {
-  
   struct cell table [SIZE_COL][SIZE_ROW];
 
   draw_table(table);
-
+  show_current_generation(table);
   int i;
+
   for (i = 0; i < 10; i++)
   {
-    show_current_generation(table);
     future_generation(table);
+    show_current_generation(table);
   }
   return 0;
 } /* end of main */
@@ -117,6 +118,7 @@ void draw_table(struct cell table[SIZE_COL][SIZE_ROW])
     for(j = 0; j < SIZE_ROW; j++)
     {
       table[i][j].current = rand() % 2;
+      table[i][j].future = 0;
     }
   }
 }
@@ -168,9 +170,9 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
     {
       printf("%c ", table[i][j].current ? '*' : '.');
     }
-    printf("/n");
+    printf("\n");
   }
-  printf("/n/n");
+  printf("\n\n");
 }
 
 /*********************************************************************
@@ -218,7 +220,7 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
   }
    for(i = 0; i < SIZE_COL; i++)
   {
-    for(j = 0; j < SIZE_ROW; i++)
+    for(j = 0; j < SIZE_ROW; j++)
     {
       table[i][j].current = table[i][j].future;
     }
