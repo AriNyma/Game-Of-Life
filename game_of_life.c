@@ -145,15 +145,16 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y) // mä
   {
     for(j = -1; j < 2; j++)
     {
-      if(table[i][j].current == 1)
-      {
-        /*taulukon pyörittäminen: kun i = 0 niin viereinen (vasemmalla oleva solu on i + leveys -1)
-        kun i = "max" oikealla oleva solu on i - leveys + 1. 1+10-1=10*/
+      int col = (x + i + SIZE_COL) % SIZE_COL;
+      int row = (y + j + SIZE_ROW) % SIZE_ROW;
+
+      if(table[col][row].current == 1)
+      {      
         count ++;
       }
     }
   }
-  count -= table[y][x].current; //xy toisin päin koska rivit ja saraakkeet on ilmoitettu myös toisin päin
+  count -= table[y][x].current; //xy toisin päin koska rivit ja sarakkeet on ilmoitettu myös toisin päin
   return count;
 }
 
