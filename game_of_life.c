@@ -44,7 +44,6 @@
 *--------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 /*-------------------------------------------------------------------*
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
@@ -82,6 +81,10 @@ int main()
   struct cell table [SIZE_COL][SIZE_ROW];
 
   draw_table(table);
+  table[0][0].current = 1;
+  table[1][0].current = 1;
+  table[0][1].current = 1;
+
   show_current_generation(table);
   int i;
 
@@ -110,14 +113,13 @@ int main()
 *********************************************************************/
 void draw_table(struct cell table[SIZE_COL][SIZE_ROW])
 {
-  srand(time(NULL));
   int i, j;
   
   for(i = 0; i < SIZE_COL; i++)
   {
     for(j = 0; j < SIZE_ROW; j++)
     {
-      table[i][j].current = rand() % 2;
+      table[i][j].current = 0;
       table[i][j].future = 0;
     }
   }
@@ -146,7 +148,7 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y) // mä
       if(table[i][j].current == 1)
       {
         /*taulukon pyörittäminen: kun i = 0 niin viereinen (vasemmalla oleva solu on i + leveys -1)
-        kun i = "max" oikealla oleva solu on i - leveys + 1. 2+10-1=11*/
+        kun i = "max" oikealla oleva solu on i - leveys + 1. 1+10-1=10*/
         count ++;
       }
     }
