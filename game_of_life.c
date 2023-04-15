@@ -67,8 +67,8 @@ struct cell
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
 int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y);
-//void read_file(struct cell table[SIZE_COL][SIZE_ROW], char read_table);
-void draw_table(struct cell table[SIZE_COL][SIZE_ROW]);
+void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c);
+void intialize_table(struct cell table[SIZE_COL][SIZE_ROW]);
 void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW]);
 void future_generation(struct cell table[SIZE_COL][SIZE_ROW]);
 
@@ -80,14 +80,15 @@ int main()
 {
   struct cell table [SIZE_COL][SIZE_ROW];
 
-  draw_table(table);
-  table[0][0].current = 1;
+  intialize_table(table);
+  /*table[0][0].current = 1;
   table[1][0].current = 1;
   table[0][1].current = 1;
   table[0][9].current = 1;
   table[3][3].current = 1;
-  table[4][4].current = 1;
+  table[4][4].current = 1;*/
 
+  read_file(table, state_c);
   show_current_generation(table);
   int i;
 
@@ -107,14 +108,14 @@ int main()
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME: draw_table
+ NAME: intialize_table
  DESCRIPTION: setting up the array tables for current random/set for future null
 	Input:
 	Output:
   Used global variables:
  REMARKS when using this function:
 *********************************************************************/
-void draw_table(struct cell table[SIZE_COL][SIZE_ROW])
+void intialize_table(struct cell table[SIZE_COL][SIZE_ROW])
 {
   int i, j;
   
@@ -246,8 +247,31 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
  REMARKS when using this function:
 *********************************************************************/
 
-/*void read_file(struct cell table[SIZE_COL][SIZE_ROW], char read_table);
+void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c)
 {
-  FILE *fp
-  char 
-}*/
+  FILE *fp;
+  int state, c, r;
+
+  fp = fopen("gol_start.txt", "r");
+
+  while(fscanf(fp, "%c", state_c) == 1)
+  {
+    state = state_c - '0';
+    table[r][c].current = state;
+    c++;
+    if (c >= SIZE_COL)
+    {
+      r++;
+      c = 0;
+
+      /* reads the newline characters away */
+      fscanf(fp, "%c", &state_c); /* reads newline from file */
+      
+      //#if defined(_WIN32) && (!defined(__unix__) || !defined(__unix) || (!defined(__APPLE__) && !defined(__MACH__)))
+      //fscanf(fp, "%c", &state_c); /* reads carriage return from file in case of Windows */
+      //#endif
+    }
+  }
+  fclose(fp);
+  return 0;
+}
