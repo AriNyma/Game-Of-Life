@@ -67,7 +67,7 @@ struct cell
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
 int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y);
-//void read_file(struct cell table[SIZE_COL][SIZE_ROW], char )
+//void read_file(struct cell table[SIZE_COL][SIZE_ROW], char read_table);
 void draw_table(struct cell table[SIZE_COL][SIZE_ROW]);
 void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW]);
 void future_generation(struct cell table[SIZE_COL][SIZE_ROW]);
@@ -234,3 +234,20 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
     }
   }
 }
+
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME: read_file
+ DESCRIPTION: 
+	Input:
+	Output:
+  Used global variables:
+ REMARKS when using this function:
+*********************************************************************/
+
+/*void read_file(struct cell table[SIZE_COL][SIZE_ROW], char read_table);
+{
+  FILE *fp
+  char 
+}*/
