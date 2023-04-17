@@ -105,8 +105,8 @@ int main()
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME: intialize_table
- DESCRIPTION: setting up the array tables for current random/set for future null
-	Input:
+ DESCRIPTION: setting up the array tables "current" and "future"
+	Input: Global constants
 	Output:
   Used global variables:
  REMARKS when using this function:
@@ -130,9 +130,9 @@ void intialize_table(struct cell table[SIZE_COL][SIZE_ROW])
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME: count_neighbours
- DESCRIPTION: counting the neighbours of a node
-	Input:
-	Output:
+ DESCRIPTION: counting the alive neighbours of a node
+	Input: Global constants
+	Output: Count of alive neighbour cells
   Used global variables:
  REMARKS when using this function:
 *********************************************************************/
@@ -163,7 +163,7 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y)
 ---------------------------------------------------------------------
  NAME: current_generation
  DESCRIPTION: print out the current table with the active and deactive nodes
-	Input:
+	Input: Global constants
 	Output:
   Used global variables:
  REMARKS when using this function:
@@ -187,7 +187,7 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
 ---------------------------------------------------------------------
  NAME: next_generation
  DESCRIPTION: creating the next generation according the current generation
-	Input:
+	Input: Global constants and count_neighbours function result
 	Output:
   Used global variables:
  REMARKS when using this function:
@@ -238,11 +238,12 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME: read_file
- DESCRIPTION:
-	Input:
-	Output:
+ DESCRIPTION: Sets up new alive cells from a external file
+	Input: Global constants
+	Output: 
   Used global variables:
- REMARKS when using this function:
+ REMARKS when using this function: Does not check if file rows and columns
+ match the given global constants
 *********************************************************************/
 
 void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c[SIZE_COL])
