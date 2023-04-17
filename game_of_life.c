@@ -67,7 +67,7 @@ struct cell
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
 int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y);
-void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c);
+void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c[SIZE_COL]);
 void intialize_table(struct cell table[SIZE_COL][SIZE_ROW]);
 void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW]);
 void future_generation(struct cell table[SIZE_COL][SIZE_ROW]);
@@ -81,14 +81,10 @@ int main()
   struct cell table [SIZE_COL][SIZE_ROW];
 
   intialize_table(table);
-  /*table[0][0].current = 1;
-  table[1][0].current = 1;
-  table[0][1].current = 1;
-  table[0][9].current = 1;
-  table[3][3].current = 1;
-  table[4][4].current = 1;*/
 
+  char state_c[SIZE_COL];
   read_file(table, state_c);
+
   show_current_generation(table);
   int i;
 
@@ -118,7 +114,7 @@ int main()
 void intialize_table(struct cell table[SIZE_COL][SIZE_ROW])
 {
   int i, j;
-  
+
   for(i = 0; i < SIZE_COL; i++)
   {
     for(j = 0; j < SIZE_ROW; j++)
@@ -127,6 +123,7 @@ void intialize_table(struct cell table[SIZE_COL][SIZE_ROW])
       table[i][j].future = 0;
     }
   }
+
 }
 
 /*********************************************************************
@@ -147,16 +144,17 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y)
   {
     for(j = -1; j < 2; j++)
     {
+      //wrapping the array table around so the edges can be included in the count
       int col = (x + i + SIZE_COL) % SIZE_COL;
       int row = (y + j + SIZE_ROW) % SIZE_ROW;
 
       if(table[col][row].current == 1)
-      {      
+      {
         count ++;
       }
     }
   }
-  count -= table[x][y].current; 
+  count -= table[x][y].current;
   return count;
 }
 
@@ -197,7 +195,7 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
 void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
 {
   int i, j;
-  
+
   for(i = 0; i < SIZE_COL; i++)
   {
     for(j = 0; j < SIZE_ROW; j++)
@@ -240,38 +238,47 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME: read_file
- DESCRIPTION: 
+ DESCRIPTION:
 	Input:
 	Output:
   Used global variables:
  REMARKS when using this function:
 *********************************************************************/
 
-void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c)
+void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c[SIZE_COL])
 {
   FILE *fp;
-  int state, c, r;
+  int state, c=0, r=0;
 
   fp = fopen("gol_start.txt", "r");
 
-  while(fscanf(fp, "%c", state_c) == 1)
+  if (fp == NULL)
   {
-    state = state_c - '0';
-    table[r][c].current = state;
-    c++;
-    if (c >= SIZE_COL)
-    {
-      r++;
-      c = 0;
+    printf("File not found\n");
+    exit(1);
+  }
 
-      /* reads the newline characters away */
-      fscanf(fp, "%c", &state_c); /* reads newline from file */
-      
-      //#if defined(_WIN32) && (!defined(__unix__) || !defined(__unix) || (!defined(__APPLE__) && !defined(__MACH__)))
-      //fscanf(fp, "%c", &state_c); /* reads carriage return from file in case of Windows */
-      //#endif
+  while((state = fgetc(fp)) != EOF)
+  {
+    if (state == '\n')
+    {
+      c++;
+      r = 0;
+    }
+    else
+    {
+      if(state == '1')
+      {
+        table[c][r].current = 1;
+      }
+      else
+      {
+        table[c][r].current = 0;
+      }
+      r++;
     }
   }
   fclose(fp);
-  return 0;
 }
+  
+
