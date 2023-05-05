@@ -20,7 +20,7 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y)
   {
     for(j = -1; j < 2; j++)
     {
-      //wrapping the array table around so the edges can be included in the count
+      /*wrapping the array table around so the edges can be included in the count*/
       int col = (x + i + SIZE_COL) % SIZE_COL;
       int row = (y + j + SIZE_ROW) % SIZE_ROW;
 
