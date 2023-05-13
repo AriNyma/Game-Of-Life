@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "header.h"
 
 /*********************************************************************
@@ -15,13 +13,14 @@
 void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
 {
   int i, j;
-  for(i = 0; i < SIZE_COL; i++)
-  {
-    for(j = 0; j < SIZE_ROW; j++)
+
+    for(i = 0; i < SIZE_COL; i++)
     {
-      printf("%c ", table[i][j].current ? '*' : '.');
+        for(j = 0; j < SIZE_ROW; j++)
+        {
+            printf("%c ", table[i][j].current ? '+' : '.');
+        }
+        printf("\n");
     }
-    printf("\n");
-  }
-  printf("\n\n");
+    printf("\n\n");
 }
