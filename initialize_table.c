@@ -10,17 +10,19 @@
   Used global variables:
  REMARKS when using this function:
 *********************************************************************/
-void intialize_table(struct cell table[SIZE_COL][SIZE_ROW])
+void initialize_table(struct cell table[SIZE_COL][SIZE_ROW])
 {
-  int i, j;
+    int i, j;
 
-  for(i = 0; i < SIZE_COL; i++)
-  {
-    for(j = 0; j < SIZE_ROW; j++)
+    for (i = 0; i < SIZE_COL; i++)
     {
-      table[i][j].current = 0;
-      table[i][j].future = 0;
+        for (j = 0; j < SIZE_ROW; j++)
+        {
+            table[i][j].current = 0;
+            table[i][j].future = 0;
+            table[i][j].current_second = 0;
+            table[i][j].future_second = 0;
+            table[i][j].terrain = 0;     
+        }
     }
-  }
-
 }

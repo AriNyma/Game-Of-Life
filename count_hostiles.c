@@ -3,14 +3,14 @@
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME: count_neighbours
+ NAME: count_hostiles
  DESCRIPTION: counting the alive neighbours of a node
 	Input: Global constants
 	Output: Count of alive neighbour cells
   Used global variables:
  REMARKS when using this function:
 *********************************************************************/
-int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y)
+int count_hostiles(struct cell table[SIZE_COL][SIZE_ROW], int x, int y)
 {
   int count = 0, i, j;
 
@@ -22,12 +22,12 @@ int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y)
       int col = (x + i + SIZE_COL) % SIZE_COL;
       int row = (y + j + SIZE_ROW) % SIZE_ROW;
 
-      if (table[col][row].current == 1)
+      if (table[col][row].current_second == 1)
       {
         count++;
       }
     }
   }
-  count -= table[x][y].current;
+  count -= table[x][y].current_second;
   return count;
 }

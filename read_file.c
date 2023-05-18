@@ -14,47 +14,59 @@
 
 void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c[SIZE_COL])
 {
-  srand(time(NULL));
-  FILE *fp;
-  int state, c=0, r=0, i=0, j=0;
+    FILE *fp;
+    int state, c = 0, r = 0, i = 0, j = 0;
 
-  fp = fopen("gol_start.txt", "r");
+    fp = fopen("gol_start.txt", "r");
 
-  if (fp == NULL)
-  {
-    printf("File not found. Using a random start situation\n");
-    for(i = 0; i < SIZE_COL; i++)
+    if (fp == NULL)
     {
-    for(j = 0; j < SIZE_ROW; j++)
+        printf("File not found. Using a random start situation\n");
+        for(i = 0; i < SIZE_COL; i++)
         {
-        table[i][j].current = rand() % 2;
-        }
-    } 
-  }
-  else
-  {
-    while((state = fgetc(fp)) != EOF)
+            for(j = 0; j < SIZE_ROW; j++)
+                {
+                    table[i][j].current = rand() % 2;
+                }
+        } 
+    }
+    while ((state = fgetc(fp)) != EOF)
     {
         if (state == '\n')
         {
-        c++;
-        r = 0;
+            c++;
+            r = 0;
         }
         else
         {
-        if(state == '1')
-        {
-            table[c][r].current = 1;
-        }
-        else
-        {
-            table[c][r].current = 0;
-        }
-        r++;
+            if (state == '1')
+            {
+                table[c][r].current = 1;
+            }
+            else if (state == '0')
+            {
+                table[c][r].current_second = 1;
+            }
+
+            if (state == 'd')
+            {
+                table[c][r].terrain = 0; /* Desert */
+            }
+            else if (state == 'p')
+            {
+                table[c][r].terrain = 1; /* Pit Hole */
+            }
+            else if (state == 'f')
+            {
+                table[c][r].terrain = 2; /* Forest */
+            }
+            else if (state == 't')
+            {
+                table[c][r].terrain = 3; /* Fortress */
+            }
+
+            r++;
         }
     }
-  }
-  fclose(fp);
+    fclose(fp); 
 }
-  
-

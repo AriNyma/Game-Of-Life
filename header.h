@@ -45,7 +45,8 @@
 *--------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <ncurses.h>
+#include <unistd.h>
 
 /*-------------------------------------------------------------------*
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
@@ -53,7 +54,7 @@
 /* Control flags */
 
 /* Global constants */
-#define SIZE_ROW 10
+#define SIZE_ROW 50
 #define SIZE_COL 10
 
 /* Global variables */
@@ -61,16 +62,20 @@
 /* Global structures */
 struct cell
 {
-  int current;    /*starting situation, shown on screen*/
-  int future;     /*upcomming situation*/
+  int current; /*First population*/
+  int future;
+  int current_second; /*Second population*/
+  int future_second;
+  int terrain;
 };
 
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
 int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y);
+int count_hostiles(struct cell table[SIZE_COL][SIZE_ROW], int x, int y);
 void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c[SIZE_COL]);
-void intialize_table(struct cell table[SIZE_COL][SIZE_ROW]);
+void initialize_table(struct cell table[SIZE_COL][SIZE_ROW]);
 void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW]);
 void future_generation(struct cell table[SIZE_COL][SIZE_ROW]);
 

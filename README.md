@@ -2,10 +2,31 @@
 
 ## The Rules
 
-### For a space that is 'populated':
-* Each cell with one or no neighbours' dies, as if by loneliness.
-* Each cell with four or more neighbours dies, as if by overpopulation.
-* Each cell with two or three neighbours survives.
+### Forrest terrain
+* First Population
+- New life if empty cell has 2-4 neighbours
+- Dies if cell has less than 2 or more than 5 neighbours
 
-### For a space that is 'empty' or 'unpopulated'
-* Each cell with three neighbours becomes populated.
+* Second population
+- New life if empty cell has 3 neighbours
+- Dies if cell has less than 2 or more than 3 neighbours
+
+
+### Desert terrain
+* First population
+- New life if empty cell has 3 neighbours
+- Dies if cell has less than 2 or more than 3 neighbours
+
+* Second population
+- New life if empty cell has 2-4 neighbours
+- Dies if cell has less than 2 or more than 4 neighbours
+
+### Fortress
+* First population 
+- Can acces if cell has 3 or more neighbours
+
+* Second population 
+- Can acces if cell has less than 3 neighbours
+
+### Pit
+* No one survives
