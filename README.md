@@ -19,7 +19,7 @@
 
 * Second population
     - New life if empty cell has 2-4 neighbours
-        - Dies if cell has less than 2 or more than 4 neighbours
+    - Dies if cell has less than 2 or more than 4 neighbours
 
 ### Fortress
 * First population 
