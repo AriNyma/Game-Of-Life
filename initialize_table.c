@@ -12,15 +12,16 @@
 *********************************************************************/
 void initialize_table(struct cell table[SIZE_COL][SIZE_ROW])
 {
+
     int i, j;
 
     for (i = 0; i < SIZE_COL; i++)
     {
         for (j = 0; j < SIZE_ROW; j++)
         {
-            table[i][j].current = 0;
+            table[i][j].current = rand() % 2;;
             table[i][j].future = 0;
-            table[i][j].current_second = 0;
+            table[i][j].current_second = rand() % 2;;
             table[i][j].future_second = 0;
             table[i][j].terrain = 0;     
         }

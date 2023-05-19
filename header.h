@@ -74,6 +74,7 @@ struct cell
 *--------------------------------------------------------------------*/
 int count_neighbours(struct cell table[SIZE_COL][SIZE_ROW], int x, int y);
 int count_hostiles(struct cell table[SIZE_COL][SIZE_ROW], int x, int y);
+void read_map(struct cell table[SIZE_COL][SIZE_ROW], char state_c[SIZE_COL]);
 void read_file(struct cell table[SIZE_COL][SIZE_ROW], char state_c[SIZE_COL]);
 void initialize_table(struct cell table[SIZE_COL][SIZE_ROW]);
 void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW]);

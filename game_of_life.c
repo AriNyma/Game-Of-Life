@@ -15,6 +15,7 @@ int main()
     initialize_table(table);
 
     char state_c[SIZE_COL];
+    read_map(table, state_c);
     read_file(table, state_c);
     
     int i;

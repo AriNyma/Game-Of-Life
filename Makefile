@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -ansi -pedantic
 LDFLAGS = -lncursesw
 # Define source files
-SRCS = game_of_life.c count_neighbours.c count_hostiles.c initialize_table.c current.c future.c read_file.c
+SRCS = game_of_life.c count_neighbours.c count_hostiles.c initialize_table.c current.c future.c read_map.c read_file.c 
 
 # Define object files
 OBJS = $(SRCS:.c=.o)
