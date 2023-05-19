@@ -1,7 +1,7 @@
 # Define constants
 CC = gcc
 CFLAGS = -Wall -ansi -pedantic
-
+LDFLAFS = -ln
 # Define source files
 SRCS = game_of_life.c count_neighbours.c initialize_table.c current.c future.c read_file.c
 
@@ -13,11 +13,11 @@ TARGET = game.exe
 
 # Rule to compile each C-file separately
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
 # Rule to compile the whole program
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(LDFLAGS) $^ -o $@ -l
 
 # Rule to clean all files except C-files and Makefile
 clean:
