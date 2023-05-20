@@ -21,8 +21,6 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
             int neighbours = count_neighbours(table, i, j);
             int hostile = count_hostiles(table, i, j);
             int terrain = table[i][j].terrain;
-            int own_spies = 0;
-            int hostile_spies = 0;
 
             if (terrain == 0) /* Desert */
             {
