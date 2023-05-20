@@ -20,7 +20,7 @@ int main()
     
     int i;
 
-    for (i = 0; i < 100; i++)
+    for (i = 0; i < 50; i++)
     {
         show_current_generation(table);
         future_generation(table);  

@@ -26,7 +26,7 @@
     - Can acces if cell has 3 or more neighbours
 
 * Second population 
-    - Can acces if cell has less than 3 neighbours
+    - Can't acces
 
 ### Pit
 * No one survives

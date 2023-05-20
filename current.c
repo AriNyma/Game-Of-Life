@@ -16,8 +16,8 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
      int i, j;
     
     start_color(); /* enable color */
-    init_pair(POP1, COLOR_RED, COLOR_BLUE); /* define a color pair for first population */
-    init_pair(POP2, COLOR_BLUE, COLOR_RED); /* define a color pair for second population */
+    init_pair(POP1, COLOR_BLUE, COLOR_BLUE); /* define a color pair for first population */
+    init_pair(POP2, COLOR_RED, COLOR_RED); /* define a color pair for second population */
     init_pair(DES, COLOR_MAGENTA, COLOR_YELLOW); /*desert*/
     init_pair(FOR, COLOR_YELLOW, COLOR_GREEN); /*forrest*/
     init_pair(PIT, COLOR_WHITE, COLOR_BLACK); /*pit*/
@@ -68,6 +68,7 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
             }  
         } 
     }
-    sleep(1);
+    /*sleep(1);*/
+    getch();
     refresh();
 }

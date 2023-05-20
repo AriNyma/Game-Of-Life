@@ -130,12 +130,9 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
             }
             else if (terrain == 3) /* Fortress */
             {
-                own_spies = count_neighbours(table, i, j); /* Count own  */
-                hostile_spies = 8 - own_spies; /* Count hostile */
-
                 if (table[i][j].current == 0)
                 {
-                    if (own_spies >= 3)
+                    if (neighbours >= 3)
                     {
                         table[i][j].future = 1; /* Own easily go over the wall */
                     }
@@ -143,18 +140,7 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
                     {
                         table[i][j].future = 0;
                     }
-                }
-                else
-                {
-                    if (hostile_spies >= 3)
-                    {
-                        table[i][j].future_second = 0; 
-                    }
-                    else
-                    {
-                        table[i][j].future_second = 1;
-                    }
-                }
+                } 
             }
         }
     }
