@@ -1,7 +1,7 @@
 # Define constants
 CC = gcc
 CFLAGS = -Wall -ansi -pedantic
-LDFLAGS = -lncursesw
+LDFLAGS = -lncurses
 # Define source files
 SRCS = game_of_life.c count_neighbours.c count_hostiles.c initialize_table.c current.c future.c read_map.c read_file.c 
 

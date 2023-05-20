@@ -69,7 +69,7 @@ struct cell
   int terrain;
 };
 
-enum color {NONE, POP1, POP2, DES, FOR, PIT, FORT};
+enum {NONE, POP1, POP2, DES, FOR, PIT, FORT};
 
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *

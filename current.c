@@ -11,8 +11,6 @@
  REMARKS when using this function:
 *********************************************************************/
 
-enum {NONE, POP1, POP2, DES, FOR, PIT, FORT};
-
 void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
 {
      int i, j;
