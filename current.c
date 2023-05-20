@@ -31,9 +31,9 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
             {
                 if(table[i][j].current == 1)
                 {
-                attron(COLOR_PAIR(POP1));
-                mvaddch(i, j, ' '); /* print a space with colorpair at position (i,j)*/
-                attroff(COLOR_PAIR(POP1));
+                    attron(COLOR_PAIR(POP1));
+                    mvaddch(i, j, ' '); /* print a space with colorpair at position (i,j)*/
+                    attroff(COLOR_PAIR(POP1));
                 }
                 else if (table[i][j].current_second == 1)
                 {
@@ -68,7 +68,6 @@ void show_current_generation(struct cell table[SIZE_COL][SIZE_ROW])
             }  
         } 
     }
-    /*sleep(1);*/
-    getch();
+    sleep(1);
     refresh();
 }

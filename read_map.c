@@ -49,7 +49,6 @@ void read_map(struct cell table[SIZE_COL][SIZE_ROW], char state_c[SIZE_COL])
             {
                 table[c][r].terrain = 3; /* Fortress */
             }
-
             r++;
         }
     }

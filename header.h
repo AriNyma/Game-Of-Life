@@ -62,11 +62,11 @@
 /* Global structures */
 struct cell
 {
-  int current; /*First population*/
-  int future;
-  int current_second; /*Second population*/
-  int future_second;
-  int terrain;
+    int current; /*First population*/
+    int future;
+    int current_second; /*Second population*/
+    int future_second;
+    int terrain;
 };
 
 enum {NONE, POP1, POP2, DES, FOR, PIT, FORT};

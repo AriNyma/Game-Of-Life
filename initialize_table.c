@@ -12,7 +12,6 @@
 *********************************************************************/
 void initialize_table(struct cell table[SIZE_COL][SIZE_ROW])
 {
-
     int i, j;
 
     for (i = 0; i < SIZE_COL; i++)
