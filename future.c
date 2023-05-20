@@ -72,7 +72,7 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
                         table[i][j].future_second = 1;
                     }
                 }
-                
+              
             }
             else if (terrain == 1) /* Pit Hole */
             {
@@ -126,8 +126,7 @@ void future_generation(struct cell table[SIZE_COL][SIZE_ROW])
                     {
                         table[i][j].future_second = 1;
                     }
-                }
-                
+                }                
             }
             else if (terrain == 3) /* Fortress */
             {

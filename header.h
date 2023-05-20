@@ -55,7 +55,7 @@
 
 /* Global constants */
 #define SIZE_ROW 50
-#define SIZE_COL 10
+#define SIZE_COL 25
 
 /* Global variables */
 
