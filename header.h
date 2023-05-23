@@ -25,7 +25,7 @@
 
  2.  DESCRIPTION
         Program switches the "status" of a center node in a grid according the situation next to it.
-
+        
         If the node has 4 or more active nodes adjacent to it then the center node will deactivate
         Also if the "neigbourhood" has 1 or less active nodes the node will deactivate
         In the case there are 3 active nodes the node will activate
